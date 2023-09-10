@@ -1,4 +1,4 @@
-import { LeanDocument, Model, Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { LANGUAGE } from '../utils';
 
 // Each user needs to have an array of history IDs associated
@@ -45,11 +45,13 @@ interface Chat {
 
 export interface IHistoryMethods {}
 
-export type HistoryDocument = LeanDocument<IHistory> &
-  IHistory & { _id: Types.ObjectId } & IHistoryMethods;
+export type HistoryDocument = IHistory & {
+  _id: Types.ObjectId;
+} & IHistoryMethods;
 
-export type CompleteHistoryDocument = LeanDocument<ICompleteHistory> &
-  ICompleteHistory & { _id: Types.ObjectId } & IHistoryMethods;
+export type CompleteHistoryDocument = ICompleteHistory & {
+  _id: Types.ObjectId;
+} & IHistoryMethods;
 
 export interface IHistoryModel extends Model<IHistory, {}, IHistoryMethods> {
   findHistoryById(id: string): Promise<HistoryDocument>;

@@ -1,4 +1,4 @@
-import { LeanDocument, Model, Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { DIFFICULTY, LANGUAGE, TOPIC } from '../utils';
 
 export interface IQuestion {
@@ -28,12 +28,13 @@ interface ITemplate {
 //   count: number;
 // }
 
-export type QuestionDocument = LeanDocument<IQuestion> &
-  IQuestion & { _id: Types.ObjectId } & IQuestionMethods;
+export type QuestionDocument = IQuestion & {
+  _id: Types.ObjectId;
+} & IQuestionMethods;
 
-export type FormattedQuestionDocument = LeanDocument<
-  Omit<IQuestion, 'templates'>
-> & { templates: Record<string, string> };
+export type FormattedQuestionDocument = Omit<QuestionDocument, 'templates'> & {
+  templates: Record<string, string>;
+};
 
 export interface IQuestionMethods {}
 

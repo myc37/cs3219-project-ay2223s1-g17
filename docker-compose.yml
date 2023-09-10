@@ -133,7 +133,7 @@ services:
 
   mongo_db:
     container_name: mongo_db
-    image: mongo:latest
+    image: mongo:7.0
     restart: always
     ports:
       - '27017:27017'
